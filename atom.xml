@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Ruizhe Zhang</title>
+ <link href="www.cs.utexas.edu/atom.xml" rel="self"/>
+ <link href="www.cs.utexas.edu/"/>
+ <updated>2018-11-08T15:03:09-06:00</updated>
+ <id>www.cs.utexas.edu</id>
+ <author>
+   <name>Ruizhe Zhang</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title></title>
+   <link href="www.cs.utexas.edu/2000/01/01/home.html"/>
+   <updated>2000-01-01T00:00:00-06:00</updated>
+   <id>www.cs.utexas.edu/2000/01/01/home</id>
+   <content type="html">&lt;h2 id=&quot;about-me&quot;&gt;About Me&lt;/h2&gt;
+
+&lt;p&gt;I am a first year Ph.D student studying Computer Science at University of Texas at Austin, advised by &lt;a href=&quot;https://www.cs.utexas.edu/~danama/&quot;&gt;Prof. Dana Moshkovitz&lt;/a&gt;. My research is mainly focused on algorithms and complexity theory, especially in Hardness of Approximation.&lt;/p&gt;
+
+&lt;p&gt;My current projects is about FPT (&lt;a href=&quot;https://en.wikipedia.org/wiki/Parameterized_complexity#FPT&quot;&gt;fixed parameter tractable&lt;/a&gt;) inapproximability, including the hardness results for k-Clique and other interesting problem in fine-grained complexity.&lt;/p&gt;
+
+&lt;p&gt;I am also interested in topics such as pseudorandomness, coding theory and graph isomorphism.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>

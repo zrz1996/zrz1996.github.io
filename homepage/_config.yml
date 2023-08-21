@@ -1,0 +1,16 @@
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Setup
+title:            Ruizhe Zhang
+description:      
+url:              www.cs.utexas.edu
+baseurl:          /~rzzhang/
+
+author:
+  name:           'Ruizhe Zhang'
+
+paginate:         5
+
+gems: [jekyll-paginate]
