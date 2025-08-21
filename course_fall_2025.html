@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Name - Your University</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 30px;
+        }
+        
+
+        
+        .course-title {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+        
+        .course-subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .course-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .course-info p {
+            margin: 10px 0;
+        }
+        
+        .course-info strong {
+            color: #2c3e50;
+        }
+        
+        .announcements {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .announcements ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .announcements li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+        
+        .resources ul {
+            columns: 2;
+            column-gap: 40px;
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        .resources li {
+            margin-bottom: 10px;
+            break-inside: avoid;
+        }
+        
+        .staff-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .staff-member {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        
+        
+        .edit-instructions {
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .course-title {
+                font-size: 2em;
+            }
+            
+            .resources ul {
+                columns: 1;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="course-title">
+            <span class="editable">CS 59300</span> 
+            <span class="editable">Algorithms for Data Science</span>, 
+            <span class="editable">Fall 2025</span>
+        </h1>
+        <p class="course-subtitle"><span class="editable">Classical and Quantum Approaches</span></p>
+    </div>
+
+    <div class="section">
+        <h2>Course Details</h2>
+        <div class="course-info">
+            <p><strong>Description:</strong> <span class="editable">This is a graduate-level course that explores the classical and quantum algorithmic foundations of machine learning and data science, with a focus on techniques that provide provable guarantees. The course is divided into two parts. The first half introduces a number of classical techniques for algorithm design, including tensor methods, Sum-of-Squares (SoS), spectral analysis, MCMC, and diffusion. The second half presents a self-contained introduction to quantum algorithms for optimization and machine learning, including quantum linear algebra, quantum sampling, and learning from quantum data. Throughout the course, we will cover applications across a range of domains, including but not limited to robust statistics, generative modeling, statistical and quantum physics. We aim to provide a unified perspective on how advanced algorithmic techniques—both classical and quantum—can be applied to address key challenges in high-dimensional data analysis.</span></p>
+            
+            <p><strong>Time/Location:</strong> <span class="editable">TTH 9:00 am, SCHM 116</span></p>
+            
+            <p><strong>Instructor:</strong> <a href="#" class="editable">Ruizhe Zhang</a> (<span class="editable">rzzhang@purdue.edu</span>)</p>
+            <p><strong>Office hours:</strong> <span class="editable">By appointment</span></p>
+            
+            <!--
+            <div class="staff-info">
+                <div class="staff-member">
+                    <strong><a href="#" class="editable">Teaching Assistant 1</a></strong><br>
+                    <span class="editable">ta1@university.edu</span><br>
+                    Office hours: <span class="editable">Day Time-Time, Location</span>
+                </div>
+                <div class="staff-member">
+                    <strong><a href="#" class="editable">Teaching Assistant 2</a></strong><br>
+                    <span class="editable">ta2@university.edu</span><br>
+                    Office hours: <span class="editable">Day Time-Time, Location</span>
+                </div>
+            </div>
+            -->
+            
+            <p><strong>Course information:</strong> <a href="syllabus_ADS.pdf" class="editable">Here</a></p>
+        </div>
+    </div>
+    <!--
+    <div class="section">
+        <h2>Announcements</h2>
+        <div class="announcements">
+            <ul>
+                <li><span class="editable">Assignment 4 due November 15, 11:59pm.</span></li>
+                <li><span class="editable">Midterm exam on October 25 in regular classroom.</span></li>
+                <li><span class="editable">Assignment 3 due October 20, 11:59pm.</span></li>
+                <li><span class="editable">Office hours moved to different location this week.</span></li>
+                <li><span class="editable">Course registration deadline is September 15.</span></li>
+            </ul>
+        </div>
+    </div>
+    -->
+
+    <div class="section">
+        <h2>Assignments</h2>
+        <p>Assignments will be posted below and in the course <a href="https://purdue.brightspace.com/d2l/home/1432540" class="editable">Brightspace</a> when they become available.</p>
+        <!--
+        <ul>
+            <li><a href="#" class="editable">Assignment 1</a> - Due: <span class="editable">[Date]</span></li>
+            <li><a href="#" class="editable">Assignment 2</a> - Due: <span class="editable">[Date]</span></li>
+            <li><a href="#" class="editable">Assignment 3</a> - Due: <span class="editable">[Date]</span></li>
+            <li><a href="#" class="editable">Final Project</a> - Due: <span class="editable">[Date]</span></li>
+        </ul>
+        -->
+    </div>
+
+
+    <div class="section">
+        <h2>Lectures</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Topic</th>
+                    <th>Materials</th>
+                    <th>Resources</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="editable">Aug 26</span></td>
+                    <td><span class="editable">Introduction and Course Overview; Tensor (I)</span></td>
+                    <td>
+                        <!-- <a href="#" class="editable">[slides]</a>, -->
+                        <!-- <a href="#" class="editable">[notes]</a>-->
+                    </td>
+                    <td>
+                        <!--<a href="#" class="editable">[Reference 1]</a>, -->
+                        <!--<a href="#" class="editable">[Reference 2]</a> -->
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Resources</h2>
+            <ul>
+                <li><a href="https://people.csail.mit.edu/moitra/cs294.html">Algorithmic Aspects of Machine Learning</a>, <span>Ankur Moitra</span></li>
+                <li><a href="https://www.sitanchen.com/cs224/f24/index.html">Algorithms for Data Science</a>, <span>Sitan Chen</span></li>
+                <li><a href="https://tselilschramm.org/sos-paradigm/sos-paradigm.html">The Sum-of-Squares Algorithmic Paradigm in Statistics</a>, <span>Tselil Schramm</span></li>
+                <li><a href="https://kjtian.github.io/cs395t_sp25.html">Continuous Algorithms</a>, <span>Kevin Tian</span></li>
+                <li><a href="https://kuikuiliu.github.io/teaching/au2023">Algorithmic Counting and Sampling</a>, <span>Kuikui Liu</span></li>
+                <li><a href="https://math.berkeley.edu/~linlin/math275">Topics in Applied Mathematics: Quantum algorithms for scientific computation</a>, <span>Lin Lin</span></li>
+                <li><a href="https://www.ipam.ucla.edu/programs/workshops/mathematical-and-computational-challenges-in-quantum-computing-tutorials/?tab=schedule">Presentations and slides</a>, <span>IPAM Tutorial in Fall 2023</span></li>
+                <li><a href="https://www.cs.umd.edu/~amchilds/qa/qa.pdf">Lecture Notes on Quantum Algorithms</a>, <span>Andrew Childs</span></li>
+                <li><a href="https://quantumalgorithms.org/">Quantum algorithms for data analysis</a>, <span>Alessandro Luongo</span></li>
+                <li><a href="https://quantumalgorithmzoo.org/">Quantum Algorithm Zoo</a></li>
+            </ul>
+    </div>
+
+    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; color: #7f8c8d;">
+        <p>&copy; <span class="editable">2025 Ruizhe Zhang, Purdue University</span></p>
+    </footer>
+</body>
+</html>
