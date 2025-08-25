@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm,enumerate,subdepth}
+\usepackage{fullpage}
+\usepackage{xcolor}
+
+\usepackage[hypertexnames=false, colorlinks]{hyperref}
+\hypersetup{linkcolor=[rgb]{0,0.2,0.6}}
+\hypersetup{citecolor=[rgb]{0,0.6,0.2}}
+\hypersetup{urlcolor=[rgb]{.8,0,.8}}
+\usepackage[capitalise]{cleveref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\zo}{\{0,1\}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\mc}{\mathcal}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\U}{\mathbb{U}}
+\newcommand{\Id}{\mathbb{I}}
+
+\newcommand{\Var}{\mathrm{\bf Var}}
+\newcommand{\E}{\mathop{\mathbb{E}\mbox{}}\limits}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\supp}{\mathop{\mathrm{supp}}}
+
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\polylog}{\mathrm{polylog}}
+\newcommand{\negl}{\mathrm{negl}}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\Abs}[1]{\left|#1\right|}
+\newcommand{\Norm}[1]{\left\|#1\right\|}
+
+\newcommand{\lectureheader}[5]{
+	\begin{center}
+		\framebox{%
+			\vbox{%
+				\makebox[.98\textwidth]{{\bf CS59300: Algorithms for Data Science} \hfill #3} \\
+				\vspace{1em}
+				\makebox{\Large \hfill Lecture #1: #2 \hfill} \\
+				\vspace{1em}
+				\makebox[.98\textwidth]{\it Lecturer: #4 \hfill Scribe: #5}
+                \textcolor{red}{\small\textbf{NOTE:} THESE NOTES HAVE NOT BEEN EDITED OR CHECKED FOR CORRECTNESS}
+			}
+		}
+	\end{center}
+	\vspace*{1em}
+}
+
+\begin{document}
+
+
+\lectureheader{0}{Template}{Aug 24, 2025}{Ruizhe Zhang}{(Your name here)}
+
+%%%% body goes in here %%%%
+
+%Try to use the macros in the preamble when possible. Use $\Var$ for variance, $\E$ for the expectation and $\tr$ for trace. Usually they are all followed by a square-bracketed expression like $\E[X^2]$.
+
+%Use the environments for definitions and theorems, and refer to them with \cref{thm}.
+
+
+\end{document}
