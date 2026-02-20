@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+\noindent CS 58500 Theoretical Computer Science Toolkit (Spring 2026)\hfill Problem Set \# 2\\
+%\rightline{\textbf{Due: September 15th}}
+\{\{Your name\}\} \hfill \textbf{Due: Mar 2nd}
+
+\noindent\hrulefill
+
+The questions have been labeled with the date of the lecture in which the relevant material is covered.
+
+\subsection*{Problem 1 (02/12, 02/17). (30 pts)}
+\begin{enumerate}
+\item For a matrix $A$, vector $b$, positive scalars $t_1, t_2 \geq 0$, and convex functions $f_1$ and $f_2$, the
+function $g(x) = t_1f_1(Ax + b) + t_2f_2(x)$ is convex.
+\item Show that the intersection of convex sets is convex; show that for convex functions, $f, g$, the function $h(x) = \max\{f(x), g(x)\}$ is also convex.
+\item Show that for any $t\geq 0$, the level set $L(t):= \{x : f(x) \geq t\}$ of a logconcave function $f$ is convex.
+\end{enumerate}
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\subsection*{Problem 2 (02/19). (20 pts)}
+Prove the following Theorem of Bieberbach from 1915: Let $K\subseteq \mathbb{R}^n$ be a compact set. Then
+\begin{align*}
+    \mathrm{Vol}_n(K)\leq \mathrm{Vol}_n(B_2^n)\left(\frac{\mathrm{diam}(K)}{2}\right)^n
+\end{align*}
+where $\mathrm{diam}(K):=\max\{\|x-y\|_2:x,y\in K\}$.\\
+\begin{enumerate}
+    \item Show that $\mathrm{diam}(\mathrm{conv}(K))=\mathrm{diam}(K)$. So, we can assume that $K$ is convex.
+    \item For any unit vector $u\in \mathbb{S}^{n-1}$, let $S_u(K)$ be the Steiner symmetral of $K$ along $u$. For each $x\in u^\bot:=\{y\in \mathbb{R}^n:\langle y,u\rangle=0\}$, the length of the segment $K\cap (x+\mathbb{R}u)$ equals the length of $S_u(K)\cap (x+\mathbb{R}u)$. Steiner symmetrization can preserve convexity and volume. In this sub-problem, you need to prove that Steiner symmetrization cannot increase the diameter:
+    \begin{align*}
+        \mathrm{diam}(S_u(K))\leq \mathrm{diam}(K)
+    \end{align*}
+    Hint. Consider $M=\frac{K+\rho K}{2}$, where $\rho$ is the reflection across the hyperplane $u^\bot$.
+    \item Show that sequentially applying Steiner symmetrizing w.r.t. the standard basis ($u_1=e_2,u_2=e_2,\dots,u_n=e_n$) makes the set centrally symmetric (i.e., $K=-K$).
+    \item Prove the volume bound in the Bieberbach Theorem.
+\end{enumerate}
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\subsection*{Problem 3 (02/12, 02/24). (30 pts)}
+Let $f:\mathbb{R}^n\rightarrow \mathbb{R}$ be differentiable and convex. We say $f$ is $L$-smooth if
+\begin{align*}
+    |\nabla f(x) -\nabla f(y)|\leq L\|x-y\|_2~~~\forall x,y\in \mathbb{R}^n
+\end{align*}
+\begin{enumerate}
+    \item Prove that $f$ is $L$-smooth if and only if
+    \begin{align*}
+        f(y)\leq f(x)+\langle \nabla f(x),y-x\rangle +\frac{L}{2}\|y-x\|_2^2~~~\forall x,y\in \mathbb{R}^n        
+    \end{align*}
+    \item If $f$ is twice-differentiable, $f$ is $L$-smooth if and only if 
+    \begin{align*}
+        |\nabla^2f(x)[v,v]|=|v^\top \nabla^2f(x) v|\leq L\|v\|_2^2~~~\forall x,v\in \mathbb{R}^n
+    \end{align*}
+\end{enumerate}
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\subsection*{Problem 4. (20 pts)}
+The spanning tree polytope of an undirected graph $G = (V,E)$ is given by
+\begin{align*}
+    P=\{x\in \mathbb{R}_{\geq 0}^{|E|}:\sum_{e\in E}x_e=|V|-1, \sum_{(u,v)\in E\cap (S\times S)}x_{u,v}\leq |S|-1~~~\forall S\subseteq V,|S|\geq 1\}
+\end{align*}
+Then, the extreme points of this polytope exactly correspond to the indicator vectors of spanning
+trees of $G$. 
+
+In this problem, you need to design a membership oracle for this polytope. That is, for any input vector $x\in \mathbb{R}^n$, decide whether $x\in P$ in $\mathrm{poly}(|V|,|E|)$ time.
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\end{document}
+
