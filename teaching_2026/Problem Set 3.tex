@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\begin{document}
+\noindent CS 58500 Theoretical Computer Science Toolkit (Spring 2026)\hfill Problem Set \# 3\\
+%\rightline{\textbf{Due: September 15th}}
+\{\{Your name\}\} \hfill \textbf{Due: Apr 17th}
+
+\noindent\hrulefill
+
+The questions have been labeled with the date of the lecture in which the relevant material is covered.
+
+
+\subsection*{Problem 1. Concentration of Trajectories (03/26). (30 pts)}
+
+The goal of this problem is to prove the following theorem: Let $\mathsf{P}$ be an ergodic Markov chain on a finite state space $\Omega$ which is reversible w.r.t. a probability measure $\mu$. Let $(X_t)_{t\geq 0}^\infty$ be a trajectory of $\mathsf{P}$ with the initial state $X_0$ drawn from the stationary distribution $\mu$. Then for every $T\geq 1$, every $\epsilon>0$, and every 1-bounded function $f: \Omega\rightarrow [0, 1]$, we have the concentration inequality 
+\begin{align*}
+    \Pr\left[\left|\frac{1}{T}\sum_{t=0}^{T-1} f(X_t)-\mathbb{E}_\mu[f]\right|\geq \lambda_2^*({\sf P}) + \epsilon\right]\leq 2\exp(-C\epsilon^2 T)
+\end{align*}
+for some universal constant $C>0$, where $\lambda_2^*({\sf P}):=\max_{i>1} \{|\lambda_i({\sf P})|\}$ gives the second largest
+eigenvalue of ${\sf P}$ in absolute value.
+
+\begin{enumerate}
+    \item (15 pts) Like most proofs of Chernoff-like concentration inequalities, the crucial step is obtaining a good bound on the moment generating function. Let $\theta\geq 0$ be a parameter to be determined later. Establish the following bound:
+    \begin{align*}
+        \mathbb{E}\left[\exp\left(\theta \sum_{t=0}^{T-1} f(X_t)\right)\right]\leq \|M_f\|^{T-1} \cdot \mathbb{E}_\mu[e^{\theta f}]\,,
+    \end{align*}
+    where $\mat{M}_f\in \mathbb{R}^{\Omega\times \Omega}$ is defined as:
+    \begin{align*}
+        \mat{M}_f:={\rm diag}(e^{\theta f/2}) \cdot {\rm diag}(\mu)^{1/2}{\sf P}{\rm diag}(\mu)^{-1/2}\cdot {\rm diag}(e^{\theta f/2})
+    \end{align*}
+    \item (15 pts) Complete the proof of the theorem.\\
+    (Hint: Aim for the upper bound $\|\mat{M}_f\|\leq \lambda_2^*({\sf P}) \cdot e^{\theta} + (1-\lambda_2^*({\sf P})) \cdot \mathbb{E}_\mu[e^{\theta f}]$. It may also be helpful to use the inequality $1 - e^{-x} \geq x - \frac{1}{2}x^2$, which holds for all $x\geq 0$.)
+\end{enumerate}
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\subsection*{Problem 2. Matrix Bernstein (04/02). (50 pts)}
+\begin{enumerate}
+\item (20 pts) Prove the following matrix Bernstein's inequality:
+\begin{quote}
+    Consider a finite sequence $\{\mat{Z}_k\}$ of independent, random matrices with common dimension $d_1\times d_2$. Assume that $\mathbb{E}[\mat{Z}_k]= \mat{0}$ and $\|\mat{Z}_k\|\leq L$ for each index $k$. Let $\mat{Z} :=\sum_k \mat{Z}_k$. Let $\nu(\mat{Z})$ be the matrix variance proxy of the sum:
+    \begin{align*}
+        \nu(\mat{Z}):=\max\{\|\mathbb{E}[\mat{Z}\mat{Z}^\top]\|,\|\mathbb{E}[\mat{Z}^\top \mat{Z}]\|\}\,.
+    \end{align*}
+    Then, 
+    \begin{align*}
+        \Pr[\|\mat{Z}\|\geq t]\leq (d_1 + d_2)\cdot \exp\left(-\frac{t^2/2}{\nu(\mat{Z})+Lt/3}\right)~~~\forall t\geq 0\,.
+    \end{align*}
+\end{quote}
+You can directly use the Subadditivity of matrix MGF.
+    \item (30 pts) Prove the expectation bound in the same setting:
+        \begin{align*}
+            \mathbb{E}[\|\mat{Z}\|]\leq \sqrt{2\nu(\mat{Z})\log (d_1 + d_2)} + \frac{1}{3}L \log (d_1 + d_2)\,.
+        \end{align*}
+\end{enumerate}
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\subsection*{Problem 3. Differential Operator (04/07). (30 pts)}
+Given $x\in \{0,1\}^n$, we represent $x|_{i=1}$ as the bit-string identical to $x$ except
+that its $i$-th coordinate is fixed to 1. Similarly, $x|_{i=0}$ is the bit-string that is identical to $x$ except that its $i$-th coordinate is fixed to 0. For any Boolean function $f:\{0,1\}^n\rightarrow \R$, let $D_if$ be the function $\{0, 1\}^n\rightarrow \R$ defined as follows 
+\begin{align*}
+    D_i f (x):=f(x|_{i=1}) - f(x|_{i=0})\,.
+\end{align*}
+Express the Fourier coefficients $\widehat{D_if}$ as a function of $\widehat{f}$.
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\subsection*{Problem 4. Fourier Transformation Matrix (40 pts)}
+For functions $\{0, 1\}^n \rightarrow \R$, we defined the basis functions as follows. For all $S, x \in \{0, 1\}^n$, we defined $\chi_S(x):=(-1)^{\langle S,x\rangle}=(-1)^{S_1x_1 + \cdots + S_n x_n}$. Given this definition of the Fourier basis functions, the definition of the Fourier transformation matrix (or Walsh matrix) $\mathcal{F}_n\in \{1/N, -1/N\}^{N\times N}$, where $N=2^n$, is as follows:
+\begin{align*}
+    (\mathcal{F}_n)_{i,j}=\frac{1}{N}\chi_j(i)~~~\forall i,j\in \{0,1\}^n\,.
+\end{align*}
+On the other hand, the Fourier transformation matrix can be defined using the Kronecker product. Let $\mat{A}\in \R^{a\times b}$ and $\mat{B}\in \R^{a'\times b'}$ be two matrices. We define the block matrix $\mat{C} = \mat{A} \otimes \mat{B}\in \R^{aa'\times bb'}$ as follows:
+\begin{align*}
+    \mat{C}_{i,j}=a_{i,j} \mat{B}\in \R^{a'\times b'}~~~\forall i\in [a],j\in [b]\,.
+\end{align*}
+The Fourier transformation matrix is constructed as follows:
+
+\textbf{Base case.} Define
+\begin{align*}
+    \mathcal{G}_1:=\frac{1}{2}\begin{bmatrix}
+        1 & 1\\
+        1 & -1
+    \end{bmatrix}
+\end{align*}
+
+\textbf{Recursive construction.} Define, for $n > 1$, 
+\begin{align*}
+    \mathcal{G}_n:=\mathcal{G}_1\otimes \mathcal{G}_{n-1}
+\end{align*}
+
+\begin{enumerate}
+    \item (20 pts) Prove, by induction, that $\mathcal{F}_n=\mathcal{G}_n$.
+    \item (10 pts) Prove that $\mathcal{F}_n^2 = \frac{1}{N} \mat{I}$
+    \item (10 pts) Show that the Mat-Vec product $\mathcal{F}_n v$ for any $v\in \R^N$ can be done in $\mathcal{O}(N \log N)$ time.
+\end{enumerate}
+
+\noindent{\bfseries Solution.} \newline
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\end{document}
+
