@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 57800 - Purdue University</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 30px;
+        }
+        
+
+        
+        .course-title {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+        
+        .course-subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .course-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        .course-info p {
+            margin: 10px 0;
+        }
+        
+        .course-info strong {
+            color: #2c3e50;
+        }
+        
+        .announcements {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .announcements ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .announcements li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+        
+        .resources ul {
+            columns: 2;
+            column-gap: 40px;
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        .resources li {
+            margin-bottom: 10px;
+            break-inside: avoid;
+        }
+        
+        .staff-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .staff-member {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+        
+        
+        .edit-instructions {
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .course-title {
+                font-size: 2em;
+            }
+            
+            .resources ul {
+                columns: 1;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="course-title">
+            <span class="editable">CS 57800</span> 
+            <span class="editable">Statistical Machine Learning</span>, 
+            <span class="editable">Fall 2026</span>
+        </h1>
+        <!--<p class="course-subtitle"><span class="editable">Classical and Quantum Approaches</span></p>-->
+    </div>
+
+    <div class="section">
+        <h2>Course Details</h2>
+        <div class="course-info">
+            <p><strong>Description:</strong> <span class="editable">This graduate course develops the mathematical foundations of statistical machine learning, with statistical reasoning and probabilistic inference as recurring themes. Modern AI systems can often produce predictions or implement standard learning algorithms automatically. The harder questions are what those predictions mean, whether they are supported by the available data, which assumptions and approximations they rely on, and when they may fail. Accordingly, this offering is <i>theory-focused</i>: rather than presenting a catalog of methods, it develops a mathematical account of four questions that recur throughout modern machine learning:
+            <ul>
+                <li><strong>Generalization:</strong> What conclusions about an unknown population are justified by finitely many samples, and what cannot be learned without additional assumptions?</li>
+                <li><strong>Inference:</strong> How can predictions, latent structure, and marginal probabilities be computed or approximated in structured probabilistic models?</li>
+                <li><strong>Generation:</strong> How can we sample from a complicated learned distribution, and how do estimation, mixing, and discretization errors affect the result?</li>
+                <li><strong>Reliability:</strong> How are learning guarantees affected by approximation, distribution shift, privacy constraints, objective misspecification, or adversarial modification?</li>
+            </ul>
+            These questions organize the course into six connected units: statistical learning theory; unsupervised and latent-variable learning; probabilistic inference and statistical physics; diffusion-model theory; modern neural-network theory; and trustworthy machine learning. Students will also read selected research papers to see how these ideas are applied, tested, and extended in current research.</span></p>
+            
+            <p><strong>Time/Location:</strong> <span class="editable">MWF 1:30 PM - 2:20 PM at LWSN B155</span></p>
+            
+            <p><strong>Instructor:</strong> <a href="https://ruizhezhang.com/" class="editable">Ruizhe Zhang</a> <i>Office hours:</i> TBD</p>
+            <p><strong>Teaching Assistants:</strong> Shreya Nasa, Yucheng Zhang <i>Office hours:</i> TBD</p>
+            
+            <p><strong>Course policy:</strong> See <a href="teaching_2026f/syllabus_ML.pdf" class="editable">syllabus</a> for detailed overview.</p>
+            <!--<p><strong>Course feedback:</strong> <a href="https://forms.gle/idgB5mSTCv6No68o6" class="editable">Here</a></p>-->
+        </div>
+    </div>
+
+    <!--
+    <div class="section">
+        <h2>Announcements</h2>
+        <div class="announcements">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    -->
+
+
+    <div class="section">
+        <h2>Assignments</h2>
+        <p>Assignments will be posted below and in <a href="https://purdue.brightspace.com/d2l/home/1631642" class="editable">Brightspace</a> when they become available.</p>
+        <ul>
+            <!--- <li><a href="teaching_2026/Problem Set 1.pdf" class="editable">Problem Set 1</a> [<a href="teaching_2026/PSet 1.zip" class="editable">Source Files</a>]</li> -->
+        </ul>
+    </div>
+
+
+
+    <div class="section">
+        <h2>Lectures</h2>
+        <p>The schedule will be updated as we progress through the course.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Topic</th>
+                    <th>Materials</th>
+                    <th>Resources</th>
+                </tr>
+            </thead>
+            <tbody>            
+                <tr>
+                    <td><span class="editable">Aug 24</span></td>
+                    <td><span class="editable">Introduction</span></td>
+                    <td>
+                        <!-- <a href="#" class="editable">[slides]</a>, -->
+                        <!-- <a href="#" class="editable">[notes]</a>-->
+                    </td>
+                    <td>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Resources</h2>
+            <ul>
+                <li><span>Shai Shalev-Shwartz and Shai Ben-David.</span> <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf">Understanding Machine Learning: From Theory to Algorithms</a></li>
+                <li><span>Mehryar Mohri, Afshin Rostamizadeh, and Ameet Talwalkar.</span> <a href="https://www.hlevkin.com/hlevkin/45MachineDeepLearning/ML/Foundations_of_Machine_Learning.pdf">Foundations of Machine Learning</a></li>
+                <li><span>Martin Wainwright and Michael Jordan.</span> <a href="https://people.eecs.berkeley.edu/~jordan/papers/wainwright-jordan-fnt.pdf">Graphical Models, Exponential Families, and Variational Inference</a></li>
+                <li><span>Larry Wasserman.</span> <a href="https://www.stat.cmu.edu/~larry/=sml/">Statistical Methods for Machine Learning</a></li>
+                <li><span>Mark Davenport.</span> <a href="https://mdav.ece.gatech.edu/ece-6254-spring2024/">Statistical Machine Learning</a></li>
+                <li><span>Ankur Moitra.</span> <a href="https://people.csail.mit.edu/moitra/docs/bookexv2.pdf">Algorithmic Aspects of Machine Learning</a></li>
+                <li><span>Varun Kanade.</span> <a href="https://www.cs.ox.ac.uk/people/varun.kanade/teaching/CLT-MT2024/lectures/CLT%20(updated).pdf">Computational Learning Theory</a></li>
+                <li><span>John Duchi.</span> <a href="https://web.stanford.edu/class/ee377/lecture-notes.pdf">Statistics and Information Theory</a></li>
+                <li><span>Marc Mézard and Andrea Montanari.</span> <a href="https://web.stanford.edu/~montanar/RESEARCH/book.html">Information, Physics, and Computation</a></li>
+                <li><span>Yuansi Chen.</span> <a href="https://metaphor.ethz.ch/x/2026/fs/401-4634-24L/">Computational and Statistical Aspects of Diffusion Models</a></li>
+                <li><span>David Levin, Yuval Peres, and Elizabeth Wilmer.</span> <a href="https://pages.uoregon.edu/dlevin/MARKOV/mcmt2e.pdf">Markov Chains and Mixing Times</a></li>
+                <li><span>Joel A. Tropp.</span> <a href="https://arxiv.org/pdf/1501.01571">An Introduction to Matrix Concentration Inequalities</a></li>
+                <li><span>Stephen Boyd and Lieven Vandenberghe.</span> <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf">Convex Optimization</a></li>
+                <li><span>Kaare Brandt Petersen and Michael Syskind Pedersen.</span> <a href="https://course.ccs.neu.edu/ds5230f18/assets/pdf/petersen-pederson-matrix-cookbook.pdf">The Matrix Cookbook</a></li>
+            </ul>
+    </div>
+
+    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; color: #7f8c8d;">
+        <p>&copy; <span class="editable">2026 Ruizhe Zhang, Purdue University</span></p>
+    </footer>
+</body>
+</html>
