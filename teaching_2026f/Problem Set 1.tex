@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+\noindent CS 578 Statistical Machine Learning (Fall 2026)\hfill Problem Set \# 1\\
+%\rightline{\textbf{Due: September 15th}}
+\{\{Your name\}\} \hfill \textbf{Due: September 6th}
+
+\noindent\hrulefill
+
+\subsection*{Problem 1. Bayes predictor.}
+The Bayes predictor $f_{\star}:{\cal X}\rightarrow {\cal Y}$ is defined as:
+\begin{align*}
+    f_{\star}(x')\in \arg \min_{z\in {\cal Y}} \mathbb{E}[\ell(y,z)|x=x'].
+\end{align*}
+\begin{enumerate}
+    \item Consider binary classification with ${\cal Y} = \{-1, 1\}$ with the loss function 
+        \begin{align*}
+            \ell(y,z)=\begin{cases}
+            0 & \text{if}~y=z,\\
+            c_{\rm FP}>0 & \text{if}~y=-1,z=1,\\
+            c_{\rm FN} > 0 & \text{if}~y=1,z=-1.
+            \end{cases}
+        \end{align*}
+    Compute a Bayes predictor at $x=x'$ as a function of $\mathbb{E}[y|x=x']$.\\
+    \textit{Hint: Show that $f_\star(x') = {\bf 1}\{\mathbb{E}[y|x=x'] \geq~\text{or }\leq~\text{???}\}$}
+    \item Show that every Bayes predictor minimizes the population risk; that is, $\mathcal{R}(f_\star)\leq \mathcal{R}(g)$ for any $g:{\cal X}\rightarrow {\cal Y}$.
+    \item \emph{(Bonus)} We consider a learning problem on ${\cal X} \times {\cal Y}$, with ${\cal Y} = \mathbb{R}$ and the absolute loss defined as $\ell(y, z) = |y - z|$. Characterize the Bayes predictors in terms of the conditional distribution of $y|x=x'$, and give one explicit choice using the conditional cumulative distribution function (CDF).
+\end{enumerate}
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\subsection*{Problem 2. Empirical risk minimization and PAC learning.} 
+Let ${\cal X}$ be a discrete (finite or infinite) domain, ${\cal Y}=\{0,1\}$, and we use the 0--1 loss. The training sample consists of $m$ i.i.d. samples drawn from a distribution \emph{realizable} by ${\cal H} = \{h_z:z \in {\cal X}\} \cup \{h_-\}$, where for each $z \in {\cal X}$, $h_z$ is the indicator function for $z$:
+\begin{align*}
+    h_z(x)=\begin{cases}
+        1 & \text{if}~x=z,\\
+        0 & \text{otherwise}.
+    \end{cases}
+\end{align*}
+$h_-$ is the all-zero function, namely, $\forall x \in  {\cal X}$, $h_-(x) = 0$. 
+\begin{enumerate}
+    \item Describe an algorithm that implements the ERM rule for learning ${\cal H}$.
+    \item Show that ${\cal H}$ is PAC learnable. Provide an upper bound on the sample complexity.
+\end{enumerate}
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\subsection*{Problem 3. Probability and concentration.} 
+Suppose that we have $m$ coins. Each coin has the same probability of landing on heads, denoted $p$. Suppose we pick up each of the $m$ coins in turn and, for each coin, perform $n$ tosses. We assume that those $mn$ tosses are mutually independent. Note that the probability of obtaining exactly $k$ heads out of $n$ tosses for any given coin is given by the binomial distribution: 
+\begin{align*}
+    \binom{n}{k} p^{k} (1-p)^{n-k}.
+\end{align*}
+Define
+\begin{align*}
+    \hat{p}_i:=\frac{\text{number of times coin}~i~\text{lands on heads}}{n}.
+\end{align*}
+\begin{enumerate}
+    \item Compute a formula for the exact probability that at least one coin will have $\hat{p}_i=0$.
+    \item For $\epsilon >0$,  apply Hoeffding’s inequality\footnote{\url{https://en.wikipedia.org/wiki/Hoeffding\%27s_inequality}} and a union bound to prove an upper bound on
+    \begin{align*}
+        \Pr\left[\max_{1\leq i\leq m} |\hat{p}_i-p|>\epsilon\right]
+    \end{align*}
+\end{enumerate}
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+
+
+\end{document}
