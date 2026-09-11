@@ -1,0 +1,108 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+\noindent CS 578 Statistical Machine Learning (Fall 2026)\hfill Problem Set \# 2\\
+\{\{Your name\}\} \hfill \textbf{Due: September 16th}
+
+\noindent\hrulefill
+
+\subsection*{Problem 1. Averaging argument.}
+In the lecture, we have seen the following version of the ``No free lunch'' theorem:
+\begin{theorem}\label{thm:NFL}
+Consider binary classification with 0–1 loss and ${\cal X}$ infinite. For any $m>0$ and any learning algorithm $A$, there exists a probability distribution ${\cal D}$ such that
+\begin{align*}
+    {\cal R}_\star=0,\qquad \mathbb{E}_{S\sim {\cal D}^m}[\mathcal{R}(A(S))]\geq \frac{1}{4}.
+\end{align*}
+\end{theorem}
+You will prove the following corollary using~\cref{thm:NFL}: 
+\begin{corollary}
+Let ${\cal X}$ be infinite and let ${\cal H}$ be the set of all functions from ${\cal X}$ to $\{0,1\}$. Then ${\cal H}$ is not PAC-learnable.
+\end{corollary}
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\subsection*{Problem 2. ERM for learning closed intervals.}
+Let ${\cal X}=\mathbb{R}$ and ${\cal H}$ be the set of indicator functions of closed intervals and the empty set:
+\begin{align*}
+    {\cal H}=\{\mathbf{1}_{a\leq x\leq b}:\forall a,b\in \mathbb{R}\}.
+\end{align*}
+Assume binary classification with $0$--$1$ loss and realizability. Prove that ${\cal H}$ can be PAC-learned using ERM with sample complexity
+\begin{align*}
+    O\left(\frac{\log (1/\delta)}{\epsilon}\right).
+\end{align*}
+You need to provide a description of the learning algorithm and prove its sample complexity and the PAC learning guarantee.
+
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+
+\subsection*{Problem 3. VC dimensions.}
+Given some finite domain set, ${\cal X}$, and a number $k\leq |{\cal X}|$, figure out the VC dimension of each of the following classes (and prove your claims):
+\begin{enumerate}
+    \item ${\cal H}^{\cal X}_{=k}=\left\{h\in \{0,1\}^{\cal X}:|\{x:h(x)=1\}|=k\right\}$. That is, the set of all functions that assign the value $1$ to exactly $k$ elements of ${\cal X}$.
+    \item ${\cal H}_{\text{at-most-}k} = \left\{h\in \{0, 1\}^{\cal X}:|\{x:h(x)=1\}|\leq k~~\text{or}~~|\{x:h(x)=0\}|\leq k\right\}$.
+\end{enumerate}
+\end{document}
