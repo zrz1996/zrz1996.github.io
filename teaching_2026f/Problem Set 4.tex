@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+\noindent CS 578 Statistical Machine Learning (Fall 2026)\hfill Problem Set \# 4\\
+\{\{Your name\}\} \hfill \textbf{Due: October 9th}
+
+\noindent\hrulefill
+
+\subsection*{Problem 1. $k$-Means Clustering.}
+Show that the $k$-means algorithm might converge to a point that is not a local minimum. 
+
+\emph{Hint:} Suppose that $k = 2$ and the sample points are $\{1,2,3,4\}\subset \R$. Suppose we initialize the $k$-means with the centers $\mu_1=2, \mu_2=4$; and suppose we break ties in the definition of $C_i$ by assigning $i$ to be the smallest value in $\arg \min_j \|{\bf x}-{\bf \mu}_j\|$.
+
+\vspace{1em}
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\subsection*{Problem 2. Spectral Clustering.}
+In lecture, we studied spectral partitioning using the \emph{Fiedler vector}, an eigenvector corresponding to the second-smallest eigenvalue of the graph Laplacian. In this problem, we analyze a basic algorithm for computing a leading eigenvector: the \emph{power method}.
+\begin{enumerate}
+    \item Let $A\in\R^{n\times n}$ be a symmetric positive semidefinite matrix with eigenvalues
+\[
+    \lambda_1>\lambda_2\geq\cdots\geq\lambda_n\geq 0
+\]
+and corresponding orthonormal eigenvectors $\mathbf{v}_1,\dots,\mathbf{v}_n$. Starting from any vector $\mathbf{x}^0=\sum_{i=1}^n a_i\mathbf{v}_i$ with $a_1\neq 0$, the power method performs the iterations
+\[
+    \mathbf{x}^{t+1}
+    =\frac{A\mathbf{x}^t}{\|A\mathbf{x}^t\|_2},
+    \qquad t=0,1,\dots.
+\]
+Prove that, for every $i\in \{2,\dots,n\}$ and every integer $t\geq 1$,
+\[
+    \left|
+        \frac{\langle\mathbf{x}^t,\mathbf{v}_i\rangle}
+             {\langle\mathbf{x}^t,\mathbf{v}_1\rangle}
+    \right|
+    \leq
+    \left(\frac{\lambda_i}{\lambda_1}\right)^t
+    \left|
+        \frac{\langle\mathbf{x}^0,\mathbf{v}_i\rangle}
+             {\langle\mathbf{x}^0,\mathbf{v}_1\rangle}
+    \right|.
+\]
+Thus, $\mathbf{x}^t$ converges to the top eigenvector $\pm{\bf v}_1$.
+\item Let $\alpha=a_1^2/\|\mathbf{x}^0\|_2^2$. Prove that, for every integer $t\geq 1$,
+\[
+    (\mathbf{x}^t)^\top A\mathbf{x}^t
+    \geq \lambda_1\alpha^{1/(2t+1)}.
+\]
+That is, for any $\varepsilon\in(0,1)$, every integer
+$t\geq \max\{1,\frac{1}{2\varepsilon}\log(1/\alpha)\}$ satisfies
+\[
+    (\mathbf{x}^t)^\top A\mathbf{x}^t
+    \geq (1-\varepsilon)\lambda_1.
+\]
+Unlike convergence to the leading eigenvector, this guarantee does not depend on the spectral gap $\lambda_1-\lambda_2$.
+
+\emph{Hint:} Apply Jensen's inequality to the concave function
+$u\mapsto u^{2t/(2t+1)}$.  
+\end{enumerate}
+
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+\end{document}
