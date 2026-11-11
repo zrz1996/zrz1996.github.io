@@ -1,0 +1,325 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+
+
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}        
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+\noindent CS 578 Statistical Machine Learning (Fall 2026)\hfill Problem Set \# 5\\
+\{\{Your name\}\} \hfill \textbf{Due: November 2nd}
+
+\noindent\hrulefill
+
+\subsection*{Problem 1. Markov Properties.}
+Let \(G=([n],E)\) be a simple undirected graph, and let \(X=(X_1,\ldots,X_n)\) have a joint distribution \(\mu\), not necessarily strictly positive, on finite state spaces. For \(A\subseteq[n]\), write \(X_A=(X_i)_{i\in A}\), and let \(\partial_i=\{j\in[n]:\{i,j\}\in E\}\) denote the neighbors of vertex \(i\). Let \(U\perp V\mid W\) denote that \(U\) and \(V\) are conditionally independent given \(W\).
+
+Recall the following definitions from lecture:
+\begin{itemize}
+    \item \textbf{Global Markov property.} For any pairwise disjoint sets \(A,B,S\subseteq[n]\), if every path from a vertex in \(A\) to a vertex in \(B\) passes through \(S\), then $X_A\perp X_B\mid X_S$.
+
+    \item \textbf{Local Markov property.} For every \(i\in[n]\), conditioned on its neighbors, \(X_i\) is independent of all remaining variables: $X_i\perp X_{[n]\setminus(\{i\}\cup\partial_i)}
+        \mid X_{\partial_i}$.
+        
+    \item \textbf{Pairwise Markov property.} For every pair of distinct, nonadjacent vertices \(i,j\in[n]\), $X_i\perp X_j\mid X_{[n]\setminus\{i,j\}}$.
+\end{itemize}
+
+\begin{enumerate}
+    \item Prove that the global Markov property implies the local Markov property.
+    \item Prove that the local Markov property implies the pairwise Markov property.
+
+    \emph{Hint: you may first show that $U\perp(V,W)\mid Z\Longrightarrow U\perp V\mid(Z,W)$.}
+\end{enumerate}
+
+%You may not assume that \(\mu\) is strictly positive. Conditional probabilities need only be considered when the conditioning event has positive probability.
+
+\vspace{1em}
+\noindent{\bfseries Solution.}\newline 
+\begin{enumerate}
+    \item Fix a vertex \(i\), and take
+    \[
+    A=\{i\},\qquad S=\partial_i,\qquad
+    B=[n]\setminus(\{i\}\cup\partial_i).
+    \]
+    These sets are pairwise disjoint. Every path from \(i\) to a
+    vertex of \(B\) must first visit a neighbor of \(i\), hence must
+    pass through \(S\). The global Markov property therefore gives
+    \(X_i\perp X_B\mid X_{\partial_i}\), which is precisely the
+    local Markov property.
+
+    \item First prove the weak union implication in the hint. Suppose
+    \(U\perp(V,W)\mid Z\), and fix \((z,w)\) with
+    \(\Pr(Z=z,W=w)>0\). Conditional independence gives
+    \begin{align*}
+    \Pr(U=u,V=v\mid Z=z,W=w)
+    &=\frac{\Pr(U=u,V=v,W=w\mid Z=z)}
+            {\Pr(W=w\mid Z=z)}\\
+    &=\Pr(U=u\mid Z=z)\Pr(V=v\mid Z=z,W=w).
+    \end{align*}
+    Summing over \(v\) shows that
+    \(\Pr(U=u\mid Z=z,W=w)=\Pr(U=u\mid Z=z)\).
+    Substituting this into the factorization above proves
+    \(U\perp V\mid(Z,W)\).
+
+    Now let \(i,j\) be distinct nonadjacent vertices and set
+    \(R=[n]\setminus(\{i,j\}\cup\partial_i)\).
+    Since \(j\notin\partial_i\), the local Markov property at \(i\)
+    is
+    \[
+    X_i\perp(X_j,X_R)\mid X_{\partial_i}.
+    \]
+    Since \(\partial_i\cup R=[n]\setminus\{i,j\}\), weak union yields
+    \[
+    X_i\perp X_j\mid X_{[n]\setminus\{i,j\}}.
+    \]
+    This is the pairwise Markov property. All conditional probabilities
+    used above condition on positive-probability events, so strict
+    positivity of \(\mu\) is unnecessary.
+\end{enumerate}
+\newpage
+
+\subsection*{Problem 2. Higher-order Tensor Decomposition.}
+Let \(u \odot v\) denote the Khatri--Rao product of two vectors:
+if \(u \in \mathbb{R}^m\) and \(v \in \mathbb{R}^n\), then
+\[
+u \odot v = \operatorname{vec}(uv^\top) \in \mathbb{R}^{mn},
+\]
+where \(\operatorname{vec}\) flattens a matrix column by column.
+
+The \emph{Kruskal rank} (or \(k\)-rank) of a collection
+of vectors \(u_1,u_2,\ldots,u_m \in \mathbb{R}^n\) is the largest
+\(k\in \{0,\dots,m\}\) such that every subset of \(k\) vectors is linearly independent.
+
+In this problem, we explore properties of the Khatri--Rao product
+and use them to design algorithms for decomposing higher-order tensors.
+
+\begin{enumerate}
+    \item[(a)]
+    Let \(k_u\) and \(k_v\) be the \(k\)-ranks of
+    \(u_1,u_2,\ldots,u_m\) and \(v_1,v_2,\ldots,v_m\), respectively. Assume all $u_i$ and $v_i$ are nonzero.
+    Prove that the \(k\)-rank of
+    \[
+    u_1 \odot v_1,\ u_2 \odot v_2,\ \ldots,\ u_m \odot v_m
+    \]
+    is at least \(\min(k_u+k_v-1,m)\).
+
+    \item[(b)]
+    Construct a family of examples where the \(k\)-rank of
+    \[
+    u_1 \odot u_1,\ u_2 \odot u_2,\ \ldots,\ u_m \odot u_m
+    \]
+    is exactly \(2k_u-1\), and not any larger.
+    To make this nontrivial, your examples must satisfy
+    \(m>2k_u-1\).
+
+    \item[(c)]
+    Given an \(n \times n \times n \times n \times n\)
+    fifth-order tensor
+    \[
+    T = \sum_{i=1}^{r} a_i^{\otimes 5},
+    \]
+    give an algorithm for finding its factors that works for
+    \(r=2n-1\), under appropriate conditions on the factors
+    \(a_1,a_2,\ldots,a_r \in \mathbb{R}^n\).
+
+    \emph{Hint: Reduce to the third-order case.}
+\end{enumerate}
+
+\noindent{\bfseries Solution.}\newline 
+\begin{enumerate}
+    \item[(a)] Set \(K=\min(k_u+k_v-1,m)\). Since all factors are
+    nonzero, \(k_u,k_v\geq1\). Fix any \(S\subseteq[m]\) with
+    \(|S|=s\leq K\), and suppose
+    \[
+    \sum_{j\in S}c_j(u_j\odot v_j)=0,
+    \qquad\text{equivalently}\qquad
+    \sum_{j\in S}c_j u_jv_j^\top=0.
+    \]
+    Fix \(i\in S\). Choose \(J\subseteq S\setminus\{i\}\) with
+    \(|J|=\min(k_u-1,s-1)\). The vectors indexed by
+    \(J\cup\{i\}\) are linearly independent, so there is a linear
+    functional \(\ell\) such that
+    \(\ell(u_i)=1\) and \(\ell(u_j)=0\) for \(j\in J\).
+    Applying \(\ell\) to the first factor of the matrix identity gives
+    \[
+    \sum_{j\in S\setminus J}c_j\ell(u_j)v_j=0.
+    \]
+    There are
+    \[
+    |S\setminus J|=\max(1,s-k_u+1)\leq k_v
+    \]
+    remaining vectors, so they are linearly independent. In particular,
+    \(c_i\ell(u_i)=c_i=0\). Since \(i\) was arbitrary, all coefficients
+    vanish. Thus every subset of at most \(K\) product vectors is
+    independent, proving the claimed lower bound.
+
+    \item[(b)] For any integer \(k\geq1\) and any \(m\geq2k\), choose
+    distinct real numbers \(t_1,\ldots,t_m\), and define
+    \[
+    u_i=(1,t_i,t_i^2,\ldots,t_i^{k-1})^\top\in\mathbb R^k.
+    \]
+    Any \(k\) of these vectors form an invertible Vandermonde matrix,
+    so \(k_u=k\). For \(0\leq d\leq2k-2\), let \(H_d\) be the
+    \(k\times k\) matrix whose \((p,q)\)-entry is \(1\) when
+    \(p+q-2=d\), and \(0\) otherwise. Then
+    \[
+    u_i\odot u_i
+    =\sum_{d=0}^{2k-2}t_i^d\operatorname{vec}(H_d).
+    \]
+    Hence all product vectors lie in a subspace of dimension at most
+    \(2k-1\). Because \(m\geq2k\), every set of \(2k\) of them is
+    dependent, giving \(k\)-rank at most \(2k-1\). Part (a) gives the
+    matching lower bound \(\min(2k-1,m)=2k-1\). These examples therefore
+    have exactly the required \(k\)-rank, with \(m>2k_u-1\).
+
+    \item[(c)] Assume first that \(n\geq2\) and that the factors have
+    \(k\)-rank \(n\); that is, every \(n\) of the \(a_i\) are
+    linearly independent. This condition holds for generic factors.
+    Write
+    \[
+    r=2n-1,\qquad b_i=a_i\odot a_i,\qquad
+    B=[b_1\ \cdots\ b_r]\in\mathbb R^{n^2\times r}.
+    \]
+    By part (a), the \(k\)-rank of \(B\) is at least
+    \(\min(2n-1,r)=r\). Thus \(B\) has full column rank.
+
+    \textbf{Step 1: Group the modes.}
+    Group modes \((1,2)\), \((3,4)\), and \(5\), using the
+    column-by-column ordering of \(\operatorname{vec}\). This reshapes
+    \(T\) into the third-order tensor
+    \[
+    G=\sum_{i=1}^r b_i\otimes b_i\otimes a_i
+    \in\mathbb R^{n^2\times n^2\times n}.
+    \]
+    This is a third-order decomposition with two full-column-rank
+    factor matrices, so it can be recovered by simultaneous
+    diagonalization as follows.
+
+    \textbf{Step 2: Recover the directions of the \(b_i\).}
+    Choose independent standard Gaussian vectors \(x,y\in\mathbb R^n\).
+    Contract the last mode to form
+    \[
+    M_z=G(\cdot,\cdot,z)
+       =B D_z B^\top,\qquad
+    D_z=\operatorname{diag}(a_1^\top z,\ldots,a_r^\top z),
+    \quad z\in\{x,y\}.
+    \]
+    With probability one, all \(a_i^\top y\) are nonzero and the
+    ratios
+    \[
+    \rho_i=\frac{a_i^\top x}{a_i^\top y},\qquad 1\leq i\leq r,
+    \]
+    are pairwise distinct. Indeed, the \(k\)-rank assumption implies
+    that every \(a_i\) is nonzero and no two are proportional.
+    Each forbidden equality is therefore the zero set of a nonzero
+    polynomial in \((x,y)\), and there are only finitely many such
+    equalities.
+
+    Compute an orthonormal basis
+    \(Q\in\mathbb R^{n^2\times r}\) for
+    \(\operatorname{range}(M_y)=\operatorname{range}(B)\).
+    Let \(C=Q^\top B\), which is invertible. The computable
+    \(r\times r\) matrix
+    \begin{align*}
+    K&=(Q^\top M_xQ)(Q^\top M_yQ)^{-1}\\
+     &=(C D_x C^\top)(C D_y C^\top)^{-1}
+      =C\operatorname{diag}(\rho_1,\ldots,\rho_r)C^{-1}
+    \end{align*}
+    has distinct eigenvalues. Its eigenvectors are the columns of
+    \(C\), up to nonzero scaling and permutation. Multiplying these
+    eigenvectors by \(Q\) therefore recovers vectors
+    \(\widehat b_i=s_i b_i\), with \(s_i\ne0\), in some order.
+    If \(M_y\) has rank less than \(r\) or \(K\) has repeated
+    eigenvalues, resample \(x,y\).
+
+    \textbf{Step 3: Recover the factors, including their scales.}
+    Reshape each \(\widehat b_i\) into an \(n\times n\) matrix:
+    \[
+    \operatorname{unvec}(\widehat b_i)=s_i a_i a_i^\top.
+    \]
+    Any nonzero column is a vector \(d_i=t_i a_i\) for some
+    nonzero real \(t_i\). Solve the linear system in the \(r\)
+    scalar unknowns \(\lambda_i\):
+    \[
+    T=\sum_{i=1}^r\lambda_i d_i^{\otimes5}.
+    \]
+    A solution exists, namely \(\lambda_i=t_i^{-5}\). It is unique:
+    the vectors \(d_i^{\otimes2}=t_i^2b_i\) are independent, so there
+    are linear functionals \(L_j\) with
+    \(L_j(d_i^{\otimes2})=\delta_{ji}\). Applying \(L_j\) to the
+    first two modes of a relation
+    \(\sum_i\gamma_i d_i^{\otimes5}=0\) gives
+    \(\gamma_j d_j^{\otimes3}=0\), forcing \(\gamma_j=0\).
+    Finally output
+    \[
+    \widehat a_i=\sqrt[5]{\lambda_i}\,d_i,
+    \]
+    taking the unique real fifth root. Since
+    \(\sqrt[5]{t_i^{-5}}=t_i^{-1}\), this recovers every original
+    \(a_i\) exactly, up to permutation. Thus the algorithm succeeds
+    with probability one in exact arithmetic under the stated
+    \(k\)-rank condition, even though \(r=2n-1>n\).
+
+    If \(n=1\), then \(r=1\) and the tensor has a single entry;
+    its real fifth root is the required scalar factor.
+\end{enumerate}
+\newpage
+
+\end{document}
