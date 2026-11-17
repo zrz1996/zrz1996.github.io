@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+
+% Set this switch to \showsolutiontrue to print the worked solutions.
+\newif\ifshowsolution
+\showsolutiontrue
+
+% Update these fields before distributing the assignment.
+\newcommand{\psnumber}{6}
+\newcommand{\psdue}{TBD}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+\usepackage{enumitem}
+
+
+\usepackage{amsmath,amsthm,amssymb,xcolor,latexsym}
+
+\geometry{letterpaper}  
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=cyan,
+    urlcolor=magenta,
+}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+\newtheorem{problem}{Problem}
+\newtheorem{lemma}{Lemma}
+
+
+\usepackage{comment}
+\ifshowsolution
+  \newenvironment{solution}
+    {\par\medskip\noindent\textbf{Solution.}\par\small}
+    {\par}
+\else
+  \excludecomment{solution}
+\fi
+\newcommand{\pointsbox}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\pagetag}[1]{%
+  \colorbox{red!70}{\strut\textcolor{white}{\sffamily\bfseries\ \ #1\ \ }}%
+}
+\newcommand{\striptitle}[2]{%
+  \noindent
+  \begin{minipage}{0.07\linewidth}\centering \pagetag{#1}\end{minipage}%
+  \hfill
+  \begin{minipage}{0.89\linewidth}
+    {\large\scshape #2}
+  \end{minipage}\par\vspace{0.75em}
+}
+% --- Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newenvironment{boxedalgo}
+  {\begin{center}\begin{boxedminipage}{1\linewidth}}
+  {\end{boxedminipage}\end{center}}
+
+\newenvironment{inlinealgo}[1]
+  {\noindent\hrulefill\\\noindent{\bf {#1}}}
+  {\hrulefill}
+
+
+% --- Shortcuts ---
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\ot}{\otimes}
+\newcommand{\mc}{\mathcal}
+
+\begin{document}
+\noindent CS 578 Statistical Machine Learning (Fall 2026)\hfill Problem Set \# 6\\
+\{\{Your name\}\} \hfill \textbf{Due: November 15th}
+
+\noindent\hrulefill
+
+\subsection*{Problem 1.}
+
+Let $C_n$ ($n\ge3$) be an $n$-cycle with vertices $1,\dots,n$. Choose an independent set $S$ of $C_n$ uniformly at random, and let $q_n:=\Pr[1\in S]$. We showed in lecture (slide~35) that BP on $C_n$ converges to $m^{j\to i}_+=p$ on every directed edge, where $p:=(3-\sqrt5)/2=1/\varphi^2\approx0.382$ and $\varphi:=(1+\sqrt5)/2$. How does $p$ relate to $q_n$?
+
+\begin{enumerate}[label=(\alph*),itemsep=0.3em]
+\item Let $a_k$ be the number of independent sets of the $k$-vertex path, with $a_0:=1$. Derive a recurrence for $a_k$, and express $a_k$ in terms of the Fibonacci numbers ($F_0=0$, $F_1=1$, $F_{k+2}=F_{k+1}+F_k$).
+
+\item By conditioning on whether vertex~$1$ is occupied, use (a) to find an exact formula for $q_n$. Evaluate $q_3$ and $q_4$.
+
+\item At the BP fixed point, each neighbor $j\in\{2,n\}$ sends vertex~$1$ the message $m^{j\to1}_\pm=(p, 1-p)$. By the BP marginal formula (slide~34), the BP estimate of $q_n$ is
+\[
+\widehat q_{\mathrm{BP}}:=\frac{w_+}{w_++w_-},\qquad
+w_\sigma:=\prod_{j\in\{2,n\}} \sum_{s\in\{\pm1\}}\psi_{1j}(\sigma,s)\,m^{j\to1}_s\quad(\sigma\in\{\pm1\}).
+\]
+Compute $w_+$, $w_-$, and $\widehat q_{\mathrm{BP}}$ as functions of $p$, and prove that $\lim_{n\to\infty}q_n=\widehat q_{\mathrm{BP}}$ (using $\lim_{k\to\infty}F_{k+1}/F_k=\varphi$).
+\end{enumerate}
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+
+
+\subsection*{Problem 2.}
+
+Let $G=(V,E)$ be an unweighted, undirected graph, and let $E_v\subseteq E$ be the set of edges incident to $v\in V$. A set $M\subseteq E$ is a \emph{matching} if no two edges in $M$ share a node. We encode $M\subseteq E$ by $\mathbf{x}=(x_e)_{e\in E}\in\{-1,1\}^{E}$ with $x_e=+1$ if and only if $e\in M$, and write $M(\mathbf{x}):=\{e\in E:\, x_e=+1\}$.
+
+\begin{enumerate}[label=(\alph*),itemsep=0.3em]
+\item Let $\mu$ be the uniform distribution over all matchings of $G$. Express $\mu$ as a Gibbs measure of the form
+\[
+\mu(\mathbf{x})=\frac{1}{Z}\prod_{(e,f)\in F}\psi_{ef}(x_e,x_f),\qquad \mathbf{x}\in\{-1,1\}^{E},
+\]
+by specifying the interaction set $F$ and the compatibility functions $\psi_{ef}$.
+
+\item For $\mu$ as in (a), write the BP fixed-point equations (slide~34) as a closed system of equations for the unknowns $m^{e\to f}_+$. Then compute the Bethe free energy $G_\beta$ at a BP fixed point (slide~43) \emph{explicitly}: evaluate $Z_e$, $Z_{ef}$, and $Z_{e;f}$ in terms of $m^{e\to f}_+$, substitute them into $G_\beta$, and simplify so that your final formula contains only the $m^{e\to f}_+$.
+
+\item Now consider the weighted matching distribution $\mu_\lambda(\mathbf{x})\propto\lambda^{|M(\mathbf{x})|}\,\mathbf{1}\{M(\mathbf{x})\text{ is a matching}\}$ with $\lambda>1$, which assigns larger weight to larger matchings. Assuming $G$ is a connected graph and has at least two edges, repeat (a) and (b) for $\mu_\lambda$. 
+\end{enumerate}
+
+\noindent{\bfseries Solution.}\newline 
+\   %%% <-- ERASE THIS LINE AND WRITE YOUR SOLUTION HERE
+\newpage
+\end{document}
